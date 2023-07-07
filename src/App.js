@@ -12,25 +12,43 @@ class App extends Component {
   constructor(){
     super();
     this.state ={
-      general: {
-        name: "",
-        email: "",
-        phoneNumber: ""
-      },
-      education: {
-        name: "",
-        study: "",
-        date: ""
-      },
-      practical: {
-        name: "",
-        position: "",
-        tasks: "",
-        start: "",
-        end: ""
-      },
-      edit: true
+      education: [],
+      practical: [],
     }
+  }
+
+  addEducation = ()=>{
+    // console.log("Itsa me")
+    let cpy = [...this.state.education];
+    cpy.push(<Education />);
+    this.setState({
+      education: cpy,
+    });
+  }
+  removeEducation = ()=>{
+    // console.log("Itsa me")
+    let cpy = [...this.state.education];
+    cpy.splice(-1)
+    this.setState({
+      education: cpy,
+    });
+  }
+
+  addPractical = ()=>{
+    // console.log("Itsa me")
+    let cpy = [...this.state.practical];
+    cpy.push(<Practical />);
+    this.setState({
+      practical: cpy,
+    });
+  }
+  removePractical = ()=>{
+    // console.log("Itsa me")
+    let cpy = [...this.state.practical];
+    cpy.splice(-1)
+    this.setState({
+      practical: cpy,
+    });
   }
 
   render(){
@@ -44,9 +62,18 @@ class App extends Component {
             <h2>General</h2>
             <General/>
             <h2>Education</h2>
-            <Education/>
+            <div className='multiple'>{this.state.education}</div>
+            {/* <Education/> */}
+            <span className="buttons">
+              <button onClick={this.addEducation}>Add education</button>
+              <button onClick={this.removeEducation}>Remove education</button>
+            </span>
             <h2>Practical Experience</h2>
-            <Practical/>
+            <div className='multiple'>{this.state.practical}</div>
+            <span className="buttons">
+              <button onClick={this.addPractical}>Add Experience</button>
+              <button onClick={this.removePractical}>Remove Experience</button>
+            </span>
                     </div>
           </div>
       </div>

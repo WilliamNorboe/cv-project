@@ -36,15 +36,19 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <p>CV-Editor</p>
-        </header>
-        <h2>General</h2>
-        <General/>
-        <h2>Education</h2>
-        <Education/>
-        <h2>Practical Experience</h2>
-        <Practical/>
+        <div className="form">
+          <div class="content">
+            <header className="App-header">
+              <p>CV-Editor</p>
+            </header>
+            <h2>General</h2>
+            <General/>
+            <h2>Education</h2>
+            <Education/>
+            <h2>Practical Experience</h2>
+            <Practical/>
+                    </div>
+          </div>
       </div>
     );
   }

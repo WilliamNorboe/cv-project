@@ -3,6 +3,7 @@ import './App.css';
 import React, { Component } from "react";
 import General from "./components/general";
 import Education from './components/education';
+import Practical from './components/practical';
 // import Overview from "./components/general";
 // import uniqid from "uniqid";
 
@@ -42,6 +43,8 @@ class App extends Component {
         <General/>
         <h2>Education</h2>
         <Education/>
+        <h2>Practical Experience</h2>
+        <Practical/>
       </div>
     );
   }

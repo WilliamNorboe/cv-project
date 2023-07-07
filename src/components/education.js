@@ -6,11 +6,6 @@ class education extends Component {
   constructor() {
     super();
     this.state = {
-      general: {
-        name: "",
-        email: "",
-        phoneNumber: "",
-      },
       education: {
         name: "",
         study: "",

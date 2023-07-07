@@ -1,41 +1,111 @@
 // Overview.js
 
-import React, { useState } from "react";
+import React, { Component } from "react";
 
+class general extends Component {
+  constructor() {
+    super();
+    this.state = {
+      general: {
+        name: "",
+        email: "",
+        phoneNumber: "",
+      },
+      edit: true,
+    };
+  }
 
-const Overview = (props) => {
-  const { tasks, deleteTask, editTask, onEdit} = props;
+  onSubmitTask = (e) => {
+    e.preventDefault();
+    if (this.state.edit) {
+      console.log(this.state);
+      this.setState({
+        edit: false,
+      });
+    } else {
+      this.setState({
+        edit: true,
+      });
+    }
 
-//   function clicked(task){
-//     console.log(task);
+    console.log(this.state);
+  };
+  render() {
+    return (
+      <form onSubmit={this.onSubmitTask}>
+        <div className="general">
+          <label htmlFor="Name">Full Name: </label>
+          {this.state.edit ? (
+            <span>
+              <input
+                onChange={(e) => {
+                  this.setState({
+                    general: {
+                      name: e.target.value,
+                      email: this.state.general.email,
+                      phoneNumber: this.state.general.phoneNumber,
+                    },
+                  });
+                }}
+                value={this.state.general.name}
+                type="text"
+                id="Name"
+              />
+            </span>
+          ) : (
+            <p>{this.state.general.name}</p>
+          )}
+          <label htmlFor="Email">Email: </label>
+          {this.state.edit ? (
+            <span>
+              <input
+                onChange={(e) => {
+                  this.setState({
+                    general: {
+                      name: this.state.general.name,
+                      email: e.target.value,
+                      phoneNumber: this.state.general.phoneNumber,
+                    },
+                  });
+                }}
+                value={this.state.general.email}
+                type="email"
+                id="Email"
+              />
+            </span>
+          ) : (
+            <p>{this.state.general.email}</p>
+          )}
+          <label htmlFor="pnumber">Phone Number: </label>
+          {this.state.edit ? (
+            <span>
+              <input
+                onChange={(e) => {
+                  this.setState({
+                    general: {
+                      name: this.state.general.name,
+                      email: this.state.general.email,
+                      phoneNumber: e.target.value,
+                    },
+                  });
+                }}
+                value={this.state.general.phoneNumber}
+                type="text"
+                id="pnumber"
+              />
+            </span>
+          ) : (
+            <p>{this.state.general.phoneNumber}</p>
+          )}
+        </div>
+        {this.state.edit ? (
+          <button type="submit">Submit</button>
+        ) : (
+          <button>Edit</button>
+        )}
+      </form>
+    );
+  }
+}
 
-//   }
-
-
-
-  return (
-    <ul>
-      {tasks.map((task) => {
-        return <li key={task.id}>
-            {
-                task.edit ? (
-                    <span>
-                        <input type = "text" className = "editing"></input>
-                        <button onClick={()=>{onEdit(task, document.querySelector(".editing").value)}}>Re</button>
-                    </span>
-                  ) : (
-                    <span>
-                        {String(task.num) + " "+ String(task.text)} 
-                        <button onClick = {()=>deleteTask(task)}>delete</button>
-                        <button onClick={()=>editTask(task)}>Edit</button>
-                    </span>
-                    
-                  )
-            }
-            </li>;
-      })}
-    </ul>
-  );
-};
-
-export default Overview;
+export default general;
